@@ -8,7 +8,7 @@ def create_instance(num_points: int, min: int, max: int):
     for step in range(num_points):
         verif = False
         while verif == False:
-            element = [randint(min, max), randint(min, max)]
+            element = [step, randint(min, max), randint(min, max)]
             if element not in final:
                 final.append(element)
                 verif = True

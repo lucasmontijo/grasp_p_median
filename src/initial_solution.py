@@ -11,20 +11,26 @@ def get_initial_solution(instance: list, medians: int):
     else:
         return np.array(rd.choices(instance, k=medians))
 
-def calculate_distance(point_a_x: int, point_a_y: int, point_b_x: int, point_b_y: int):
-    square_x = (point_a_x - point_b_x) ^ 2
-    square_y = (point_a_y - point_b_y) ^ 2 
+def calculate_distance(point_a, point_b):
+    x = (point_a[1] - point_b[1])
+    y = (point_a[2] - point_b[2])^2
+    square_x = pow(x, 2)
+    square_y = pow(y, 2)
+    
     return sqrt(square_x + square_y)
+    
 
-
-def distance_matrix_generator(instance):
+def generate_distance_matrix(instance):
     distance_matrix = {}
+    sum = 0
     for point_a in instance:
         for point_b in instance:
-            if (point_a[0] != point_b[0]) or (point_a[1] != point_b[1]):
-                distance_matrix[(instance.index(point_a), instance.index(point_b))] = calculate_distance(point_a[0], point_a[1], point_b[0], point_b[1])
+            if (instance.item(point_a[0]) != instance.item(point_b[0])):
+                distance_matrix[(point_a[0], point_b[0])] = calculate_distance(point_a, point_b)
             else:
-                distance_matrix[(instance.index(point_a), instance.index(point_b))] = 0.0
+                sum = sum + 1
+                distance_matrix[(point_a[0], point_b[0])] = 0.0
+    print(sum)
     return distance_matrix
 
 def fun_obj(instance, distance_matrix, medians):
