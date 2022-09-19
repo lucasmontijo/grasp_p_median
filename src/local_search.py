@@ -51,14 +51,13 @@ def teitz_and_bart(medians: list, instance: list, distance_matrix):
         if cont_negative != len(savings):
             medians = best_medians.copy()
             z = best_z
-            print("Solucao " + str(k) + " Z Z: " + str(z) + " P-Medianas: " + str(medians))
             k = k + 1
         else:
             print("Melhor solucao encontrada" + str(k-1) + " => Z: " + str(z) + " P-Medianas: " + str(medians))
-            end_time = time.perf_counter()
-            print("Tempo levado para busca local: " + str(round(end_time - start_time, 2)) + "s")
+            end_time = time.perf_counter() - start_time
+            print("Tempo levado para busca local: " + str(round(end_time, 2)) + "s")
             end = True
-    return z, medians
+    return z, medians, (end_time)
 
 def get_index(arr, target_element):
     for i in range(0, len(arr)):
