@@ -53,7 +53,7 @@ def greedy_initial_construction(instance, lrc, p):
             medians_pos.append(candidate)
     for i in range(0, len(medians_pos)):
         medians[i][0], medians[i][1], medians[i][2] = instance.item(medians_pos[i], 0), instance.item(medians_pos[i], 1), instance.item(medians_pos[i], 2)
-    end_time = time.perf_counter()
-    print("Tempo levado para construcao inicial: " + str(round(end_time - start_time, 2)) + "s")
-    return medians
+    end_time = time.perf_counter() - start_time
+    print("Tempo levado para construcao inicial: " + str(round(end_time, 2)) + "s")
+    return medians, (end_time)
 
